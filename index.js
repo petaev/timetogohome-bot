@@ -7,13 +7,13 @@ const token = process.env.TOKEN;
 
 const bot = new workBot(token,
     {
-        polling: true,
-        request: {
-            agent: new Agent({
-                host: process.env.PROXY_HOST,
-                port: process.env.PROXY_PORT
-            })
-        }
+        polling: true
+        // request: {
+        //     agent: new Agent({
+        //         host: process.env.PROXY_HOST,
+        //         port: process.env.PROXY_PORT
+        //     })
+        // }
     }
 );
 
