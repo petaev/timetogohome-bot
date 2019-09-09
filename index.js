@@ -53,7 +53,7 @@ bot.on('message', (msg) => {
   let diff = endDate.getTime() - now_tick.getTime();
 
   if (diff > 0) {
-    res = 'До конца рабочего дня:' + getFormatedTime(diff / 1000)
+    res = 'До конца рабочего дня: ' + getFormatedTime(diff / 1000)
   }
 
   // send a message to the chat acknowledging receipt of their message
