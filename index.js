@@ -38,7 +38,7 @@ bot.on('message', (msg) => {
 
   let res = 'Рабочий день закончен!';
   let now = new Date();
-  let endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getDay() == 5 ? 16 : 17);
+  let endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getDay() == 5 ? 17 : 18);
   
   const getFormatedTime = (seconds) => {
       let hours = Math.floor(seconds / 3600);
