@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "description": "Telegram Bot with nodejs",
   "main": "index.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
-    "test": "Hello"
+    "start": "node index.js",
+    "test": "node test.js"
   },
   "author": "petaev",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "dotenv": "^8.1.0",
     "https-proxy-agent": "^2.2.2",
     "node-telegram-bot-api": "^0.30.0"
+  },
+  "devDependencies": {
   }
 }
