@@ -5,6 +5,11 @@ const Agent = require('https-proxy-agent');
 const token = process.env.TOKEN;
 
 
+require('https').createServer().listen(process.env.PORT || 5000).on('request', function(req, res){
+  res.end('Server...')
+});
+
+
 const bot = new workBot(token,
     {
         polling: true
