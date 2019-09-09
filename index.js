@@ -35,6 +35,27 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
 
+
+  let res = 'Рабочий день закончен!';
+  let now = new Date();
+  let endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getDay() == 5 ? 17 : 18);
+  
+  const getFormatedTime = (seconds) => {
+      let hours = Math.floor(seconds / 3600);
+      let minutes = Math.floor((seconds - (hours * 3600)) / 60);
+      let sec = seconds - (hours * 3600) - (minutes * 60);
+      return (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes) + ':' + (sec < 10 ? '0' + Math.floor(sec) : Math.floor(sec));
+  }   
+  
+
+  // let result = 'Рабочий день закончен';
+  let now_tick = new Date();
+  let diff = endDate.getTime() - now_tick.getTime();
+
+  if (diff > 0) {
+    res = getFormatedTime(diff / 1000)
+  }
+
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'До конца рабочего дня');
+  bot.sendMessage(chatId, res);
 });
