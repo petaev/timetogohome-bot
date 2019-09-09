@@ -1,0 +1,16 @@
+{
+  "name": "ttgh-bot",
+  "version": "1.0.0",
+  "description": "Telegram Bot with nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "Hello"
+  },
+  "author": "petaev",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^8.1.0",
+    "https-proxy-agent": "^2.2.2",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
