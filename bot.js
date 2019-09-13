@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const workBot = require('node-telegram-bot-api');
-// const Agent = require('https-proxy-agent');
+const Agent = require('https-proxy-agent');
 const token = process.env.TOKEN;
 
 
@@ -12,13 +12,13 @@ const token = process.env.TOKEN;
 
 const bot = new workBot(token,
     {
-        polling: true
-        // request: {
-        //     agent: new Agent({
-        //         host: process.env.PROXY_HOST,
-        //         port: process.env.PROXY_PORT
-        //     })
-        // }
+        polling: true,
+        request: {
+            agent: new Agent({
+                host: process.env.PROXY_HOST,
+                port: process.env.PROXY_PORT
+            })
+        }
     }
 );
 
@@ -61,8 +61,19 @@ bot.on('message', (msg) => {
     res = 'До конца рабочего дня: ' + getFormatedTime(diff / 1000)
   }
 
+  const opts = {
+    reply_to_message_id: msg.message_id,
+    reply_markup: JSON.stringify({
+      keyboard: [
+        ['Бот, сколько осталось до конца работы?'],
+        ['Установить время']
+      ]
+    })
+  };
+    
+
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, res);
+  bot.sendMessage(chatId, res, opts);
 });
 
 module.exports = bot;
