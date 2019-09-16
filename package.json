@@ -17,6 +17,7 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "https-proxy-agent": "^2.2.2",
+    "mongodb": "^3.3.2",
     "node-telegram-bot-api": "^0.30.0"
   },
   "devDependencies": {}

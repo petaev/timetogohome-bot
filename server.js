@@ -1,25 +1,44 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const packageInfo = require('./package.json');
+const MongoClient = require('mongodb').MongoClient;
+const db = require('./db');
+// const packageInfo = require('./package.json');
 
 
 const app = express();
+const port = 8000;
 
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.get('/', function (req, res) {
-  res.json({ version: packageInfo.version });
+MongoClient.connect(db.url, (err, database) => {
+  if (err) return console.log(err);
+
+  const dbconnect = database.db('bztkze0jjgwxyft');
+  
+  require('./routes')(app, dbconnect);
+  
+  app.listen(port, () => {
+    console.log('Server run on ' + port);
+  })
 });
 
-var server = app.listen(process.env.PORT || 8080, "0.0.0.0", () => {
-  const host = server.address().address;
-  const port = server.address().port;
-  console.log('Web server started at http://%s:%s', host, port);
-});
 
-module.exports = (bot) => {
-  app.post('/' + bot.token, (req, res) => {
-    bot.processUpdate(req.body);
-    res.sendStatus(200);
-  });
-};
+
+// app.use(bodyParser.json());
+
+// app.get('/', function (req, res) {
+//   res.json({ version: packageInfo.version });
+// });
+
+// var server = app.listen(process.env.PORT || 8080, "0.0.0.0", () => {
+//   const host = server.address().address;
+//   const port = server.address().port;
+//   console.log('Web server started at http://%s:%s', host, port);
+// });
+
+// module.exports = (bot) => {
+//   app.post('/' + bot.token, (req, res) => {
+//     bot.processUpdate(req.body);
+//     res.sendStatus(200);
+//   });
+// };
