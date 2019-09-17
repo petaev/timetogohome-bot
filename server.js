@@ -36,9 +36,9 @@ MongoClient.connect(db.url, (err, database) => {
 //   console.log('Web server started at http://%s:%s', host, port);
 // });
 
-// module.exports = (bot) => {
-//   app.post('/' + bot.token, (req, res) => {
-//     bot.processUpdate(req.body);
-//     res.sendStatus(200);
-//   });
-// };
+module.exports = (bot) => {
+  app.post('/' + bot.token, (req, res) => {
+    bot.processUpdate(req.body);
+    res.sendStatus(200);
+  });
+};
